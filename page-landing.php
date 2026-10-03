@@ -1,19 +1,18 @@
 <?php
-$DBH_TRACKING        = true;
-$DBH_GA4_ID          = '';
-$DBH_GTM_ID          = 'GTM-KSB3NZX7';
-$DBH_ADS_ID          = '';
-$DBH_ADS_LABEL       = '';
-$DBH_SEARCH_CONSOLE  = '';
-
-$DBH_META_PIXEL      = '';
-
-$DBH_TELEFONE        = '(31) 99267-6876';
-$DBH_WHATSAPP        = '5531992676876';
-$DBH_WHATSAPP_MSG    = 'Olá, vim por meio do site do google, e gostaria de solicitar um orçamento para desentupimento.';
-$DBH_TITULO          = 'Esgoto entupido? Resolvemos hoje.';
-$DBH_DESCRICAO       = 'Desentupimento de esgoto, pias, ralos, vasos e tanques, além de água pluvial e troca de rede de esgoto. Chegamos rápido em Belo Horizonte e região metropolitana, com orçamento gratuito e garantia.';
-$DBH_BLOG_PATH       = '/blog';
+$DBH_SETTINGS = function_exists( 'dbh_settings' ) ? dbh_settings() : array();
+$DBH_TRACKING = ! empty( $DBH_SETTINGS['tracking_enabled'] );
+$DBH_GA4_ID = isset( $DBH_SETTINGS['ga4_id'] ) ? $DBH_SETTINGS['ga4_id'] : '';
+$DBH_GTM_ID = isset( $DBH_SETTINGS['gtm_id'] ) ? $DBH_SETTINGS['gtm_id'] : '';
+$DBH_ADS_ID = isset( $DBH_SETTINGS['ads_id'] ) ? $DBH_SETTINGS['ads_id'] : '';
+$DBH_ADS_LABEL = isset( $DBH_SETTINGS['ads_label'] ) ? $DBH_SETTINGS['ads_label'] : '';
+$DBH_SEARCH_CONSOLE = isset( $DBH_SETTINGS['search_console'] ) ? $DBH_SETTINGS['search_console'] : '';
+$DBH_META_PIXEL = isset( $DBH_SETTINGS['meta_pixel'] ) ? $DBH_SETTINGS['meta_pixel'] : '';
+$DBH_TELEFONE = isset( $DBH_SETTINGS['telefone'] ) ? $DBH_SETTINGS['telefone'] : '(31) 99267-6876';
+$DBH_WHATSAPP = isset( $DBH_SETTINGS['whatsapp'] ) ? $DBH_SETTINGS['whatsapp'] : '5531992676876';
+$DBH_WHATSAPP_MSG = isset( $DBH_SETTINGS['whatsapp_msg'] ) ? $DBH_SETTINGS['whatsapp_msg'] : 'Olá, vim por meio do site do google, e gostaria de solicitar um orçamento para desentupimento.';
+$DBH_TITULO = isset( $DBH_SETTINGS['titulo'] ) ? $DBH_SETTINGS['titulo'] : 'Esgoto entupido? Resolvemos hoje.';
+$DBH_DESCRICAO = isset( $DBH_SETTINGS['descricao'] ) ? $DBH_SETTINGS['descricao'] : 'Desentupimento de esgoto, pias, ralos, vasos e tanques, além de água pluvial e troca de rede de esgoto. Chegamos rápido em Belo Horizonte e região metropolitana, com orçamento gratuito e garantia.';
+$DBH_BLOG_PATH = isset( $DBH_SETTINGS['blog_path'] ) ? $DBH_SETTINGS['blog_path'] : '/blog';
 
 $DBH_LOGO            = get_stylesheet_directory_uri() . '/desentupidora-logo.png';
 $DBH_FAVICON_SVG     = get_stylesheet_directory_uri() . '/desentupidora-favicon.svg';
@@ -154,15 +153,10 @@ if ( ! function_exists( 'dbh_icon_whats' ) ) {
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KSB3NZX7');</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Desentupidora BH 24H | Desentupimento em Belo Horizonte e região</title>
-<meta name="description" content="Desentupidora 24 horas em Belo Horizonte e região. Desentupimento de esgoto, pia, ralo, vaso, tanque, caixa de gordura e água pluvial. Orçamento gratuito pelo WhatsApp.">
+<title><?php echo esc_html( $DBH_TITULO ); ?> | Desentupidora BH 24H</title>
+<meta name="description" content="<?php echo esc_attr( $DBH_DESCRICAO ); ?>">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="author" content="Desentupidora BH 24H">
 <meta name="theme-color" content="#111B39">
@@ -223,8 +217,8 @@ fbq('track', 'PageView');
 </noscript>
 </head>
 <body>
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSB3NZX7"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<?php if ( $DBH_TRACKING && $DBH_GTM_ID ) : ?><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?php echo rawurlencode( $DBH_GTM_ID ); ?>"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><?php endif; ?>
 
 <?php if ( $DBH_TRACKING && $DBH_GTM_ID ) : ?>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?php echo rawurlencode( $DBH_GTM_ID ); ?>" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -573,5 +567,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 <?php endif; ?>
 </script>
+<?php if ( function_exists( "dbh_tracking_script" ) ) { dbh_tracking_script(); } ?>
 </body>
 </html>
