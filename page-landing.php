@@ -165,8 +165,8 @@ if ( ! function_exists( 'dbh_icon_whats' ) ) {
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Desentupidora BH 24H">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:title" content="Desentupidora BH 24H — Atendimento 24 horas em Belo Horizonte">
-<meta property="og:description" content="Desentupimento de esgoto, pia, ralo, vaso, tanque, caixa de gordura e água pluvial. Atendimento 24h em Belo Horizonte e região.">
+<meta property="og:title" content="<?php echo esc_attr( $DBH_TITULO ); ?>">
+<meta property="og:description" content="<?php echo esc_attr( $DBH_DESCRICAO ); ?>">
 <meta property="og:url" content="<?php echo esc_url( $dbh_site_url ); ?>">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="<?php echo esc_url( $dbh_site_url ); ?>">
@@ -217,9 +217,6 @@ fbq('track', 'PageView');
 </noscript>
 </head>
 <body>
-<?php if ( $DBH_TRACKING && $DBH_GTM_ID ) : ?><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?php echo rawurlencode( $DBH_GTM_ID ); ?>"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><?php endif; ?>
-
 <?php if ( $DBH_TRACKING && $DBH_GTM_ID ) : ?>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?php echo rawurlencode( $DBH_GTM_ID ); ?>" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <?php endif; ?>
