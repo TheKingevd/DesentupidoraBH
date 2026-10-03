@@ -268,6 +268,8 @@ if ( ! function_exists( 'hello_elementor_body_open' ) ) {
 	}
 }
 
+require HELLO_THEME_PATH . '/includes/dbh-admin.php';
+
 require HELLO_THEME_PATH . '/theme.php';
 
 HelloTheme\Theme::instance();
