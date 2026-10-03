@@ -10,7 +10,7 @@ $DBH_META_PIXEL      = '';
 
 $DBH_TELEFONE        = '(31) 99267-6876';
 $DBH_WHATSAPP        = '5531992676876';
-$DBH_WHATSAPP_MSG    = 'Olá, gostaria de um orçamento.';
+$DBH_WHATSAPP_MSG    = 'Olá, vim por meio do site do google, e gostaria de solicitar um orçamento para desentupimento.';
 $DBH_TITULO          = 'Esgoto entupido? Resolvemos hoje.';
 $DBH_DESCRICAO       = 'Desentupimento de esgoto, pias, ralos, vasos e tanques, além de água pluvial e troca de rede de esgoto. Chegamos rápido em Belo Horizonte e região metropolitana, com orçamento gratuito e garantia.';
 $DBH_BLOG_PATH       = '/blog';
